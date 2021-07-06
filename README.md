@@ -1,24 +1,12 @@
 # README
+The setups steps expect following tools installed on the system.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    • Ruby 2.4.2
+    • Rails 5.7.0
 
-Things you may want to cover:
+DATABASE: postgresql
 
-* Ruby version
+TECHNOLOGIES: JavaScript, Ruby, Rails
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+DESCRIPTION: This project is used for Crop the image.First upload the Image and then crop the Image.
+You can also the Destroy of the image that you can uploaded.
