@@ -1,0 +1,26 @@
+<div class="new_img_shape_wrapper" style="text-align: center;">
+  <%= image_tag(@picture.try(:profile_pic).url(:thumb), id: "profile_pic_preview", class:"pro_pic_prev img_sze") %>
+  <span class="new_shape_bg">
+    <?xml version="1.0" encoding="utf-8"?>
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      width="348.6px" height="300.7px" viewBox="0 0 348.6 300.7" style="enable-background:new 0 0 348.6 300.7;" xml:space="preserve"
+      >
+      <style type="text/css">
+        .st0{fill:#C41E1E;}
+      </style>
+      <path class="st0" d="M18.1,102.6c-0.1,0.4-3.5,12-2.1,26.7c1,10.3,1.5,21.2,4.5,31.5c3,10.3,21.8,44,26.3,52.8
+        c6.9,13.3,14.2,23.8,16.8,28c16.6,27.1,41.2,43.9,52.6,50c42.1,12.9,100.2,7.2,148.3-21c43.9-24.7,68.4-57.6,68.7-100.6
+        c-0.9-36.5-12.6-62.5-31.7-81.4c-24-24.7-51.2-40.1-81.3-47.7c-26.2-9.3-54.4-11-84-7.7c-23,4.2-46.2,11.4-69.7,20.7
+        c-13.5,7.3-23.9,15.6-34.8,28.5c15.3-21.8,33.7-39,58.8-55.8c18.2-10.9,36.7-19.1,55.3-23.7c14.8-2.8,30.6-3.5,47.3,0
+        c23.5,8.4,49.2,24.6,77,48c28.2,20.9,52.9,44.5,69.7,74.3c9.4,25.2,11.4,48.9,2,70c-7.6,17.6-16.4,30-28.8,42.6
+        c-5.7,6.4-22.1,20.5-42.5,32.8c-13,7.8-29.3,14.7-40.1,18.7c-10.3,3.5-29.6,9.3-52.4,10.6c-22,1.3-47.4-1.8-53.3-3.3
+        c-32.9-5.3-58.4-22-83-40c-17.5-16.9-30.6-37.6-38-63.7c-4.4-17.8-3.6-36.2,0-55C6.6,126,10.4,116.3,18.1,102.6z"/>
+    </svg>
+  </span>
+</div>
+<%= render partial: 'shared/profile_pic_upload_modal', :locals => { :picture => @picture, :url => image_crop_path(id: @picture), :request => :patch} %>
+<div style="text-align: center;">
+  <%= link_to 'Back', root_path, class: 'btn btn-primary' %>
+  <%= link_to "Edit", 'javascript:void(0);', data: {toggle: "modal", target: "#profile_pic_upload"}, class: 'btn btn-success' %>
+  <%= link_to "Destroy", image_crop_path(id: @picture), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' %></td>
+</div>

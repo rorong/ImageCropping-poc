@@ -1,0 +1,74 @@
+<div class="page_wrapper wdth100">
+  <div class="add_new_section_mdl_main">
+    <div class="modal fade" id="profile_pic_upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog modal-lg delete_section_modal img_modal_upload" role="document">
+        <div class="modal-content">
+          <div class="delete_modl_wrap">
+            <div class="modal-header adm_del_mod">
+              <div class="verify_modal_head">
+                <h2 class="modal-title profile_photo_heading" style="text-align: inherit;">Add a photo</h2>
+              </div>
+            </div>
+            <div class="modal-body">
+              <div class="modal_container">
+                <%= form_for(:picture, url: url, method: request, html:{ class: 'user_login_form'}) do |f|%>
+                  <% if picture.present? && picture.profile_pic.present? %>
+                    <div class="img_shape_wrapper modal_img_shape main_image_center" id="prf_upld">
+                      <%= image_tag(picture.profile_pic_url(:thumb), id: "profile_pic_preview") %>
+                      <span class="shape_bg shape_center">
+                        <svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="304.1px" height="253.8px" viewBox="0 0 304.1 253.8" style="enable-background:new 0 0 304.1 253.8;" xml:space="preserve">
+                          <path d="M86.2,253.4c-14.3-9.6-55.4-79.6-60.3-97c-11.7-33.5-7.5-59.7,12.3-78.7c19.9-19.6,44.8-30.6,72.7-36
+                            c37-5.6,70.6-2,101.3,9.3c23.9,9.3,44.4,22.8,60.3,41.7c9.5,9.2,17.1,22.9,23,40.7c3.4,12.2,3.2,37.5,3.2,37.5s6.9-20.1,4.2-40.5
+                            c-2-15-12.7-32.8-16.7-38.3c-5.1-6.3-25.4-27.3-46.8-44.7c-24.5-19.8-50.2-35.7-50.2-35.7c-7.1-4.6-26.9-12.8-47.8-11.3
+                            C119,1.9,95.2,13.5,84.1,20.2C72.7,27,55.8,39.1,43.6,51.4c-6.1,6.2-14.9,16.9-21.3,27C14.8,90,9.9,100.7,9.9,100.7
+                            c-3.5,7.9-12.8,34.5-8.2,59.5c2.4,12.8,9.3,35.8,24.5,53c7.1,8,13.2,14.4,20.8,20c11.9,8.7,24.2,14.5,24.2,14.5L86.2,253.4z"></path>
+                        </svg>
+                      </span>
+                    </div>
+                  <% else %>
+                    <div class="pirkx_user_login_img login_non_img_bg" id="prf_upld">
+                      DP
+                    </div>
+                  <% end %>
+                <%= f.hidden_field "pro_pic", value:"#{picture.profile_pic_url if picture.present? && picture.profile_pic.present?}"%>
+                <%= f.hidden_field "crop_x", value:"#{picture.try(:picture_edit_detail).try(:pic_x) if picture.present? && picture.picture_edit_detail.present?}"%>
+                <%= f.hidden_field "crop_y", value:"#{picture.try(:picture_edit_detail).try(:pic_y) if picture.present? && picture.picture_edit_detail.present?}"%>
+                <%= f.hidden_field "crop_w", value:"#{picture.try(:picture_edit_detail).try(:pic_w) if picture.present? && picture.picture_edit_detail.present?}"%>
+                <%= f.hidden_field "crop_h", value:"#{picture.try(:picture_edit_detail).try(:pic_h) if picture.present? && picture.picture_edit_detail.present?}"%>
+                <%= f.hidden_field "scale_y", value:"#{picture.try(:picture_edit_detail).try(:scale_y).present? ? picture.picture_edit_detail.try(:scale_y) : 1 }"%>
+                <%= f.hidden_field "scale_x", value:"#{picture.try(:picture_edit_detail).try(:scale_x).present? ? picture.try(:picture_edit_detail).try(:scale_x) : 1 }"%>
+                <%= f.hidden_field "rotate", value:"#{picture.try(:picture_edit_detail).try(:rotate).present? ? picture.try(:picture_edit_detail).try(:rotate) : 0 }"%>
+                <input type="hidden" id="old_zoom" value="0">
+                <div class="zm_btn">
+                  <%= button_tag "Zoom In", type: "button", class: "default_btn aqua_btn", id: "zoom_in", style: "display: none;"%>
+                  <%= button_tag "Zoom Out", type: "button", class: "default_btn aqua_btn", id: "zoom_out", style: "display: none;"%>
+                </div>
+                <div class="modal_btn add_pics prfl_btn_margin">
+                  <div class="upld_btn_wrap profilee_pop_up_btn pos_rel profile_image_upldr" >
+                    <span class=""></span>
+                    <% if true %>
+                      <a href="javascript:void(0);" class="default_btn" style="background: transparent;border:1px solid #3cbfae;color: #151515;margin-right: 21px;" id="remove_btn"> Upload a photo
+                        <%= f.file_field :profile_pic, accept: "image/png, image/jpeg, image/jpg, image/gif", style: "cursor: pointer;"%>
+                      </a>
+                    <% end %>
+                  </div>
+                  <% if picture.present? && picture.profile_pic.present? %>
+                    <%= button_tag "Edit", type:"button", class: 'default_btn aqua_btn', id: 'edit_pic' %>
+                  <% end %>
+                </div>
+                <div class="modal_btn add_pics prfl_btn_margin">
+                  <div class="upld_btn_wrap profilee_pop_up_btn pos_rel profile_image_upldr" style="display: none; margin-right: 9px;" id="submit_profile">
+                    <%= button_tag "Save", class: 'default_btn orange_btn' %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "image_crop/image_crop.js" %>
+<%= javascript_include_tag "crop.js" %>
